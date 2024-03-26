@@ -19,11 +19,11 @@ class ControlColor extends Control {
     ];
 
     public function enqueue_css() {
-        \wp_enqueue_style( 'coloris', SAVVYPANEL_URL . 'css/coloris.min.css', null, \SavvyPanel\Dashboard::SAVVYPANEL_VERSION, 'all' );
+        \wp_enqueue_style( 'coloris', SAVVYPANEL_URL . '/css/coloris.min.css', null, \SavvyPanel\Dashboard::SAVVYPANEL_VERSION, 'all' );
     }
 
     public function enqueue_js() {
-        \wp_enqueue_script( 'coloris', SAVVYPANEL_URL . 'js/coloris.min.js', null, \SavvyPanel\Dashboard::SAVVYPANEL_VERSION, false );
+        \wp_enqueue_script( 'coloris', SAVVYPANEL_URL . '/js/coloris.min.js', null, \SavvyPanel\Dashboard::SAVVYPANEL_VERSION, false );
     }
 
 
