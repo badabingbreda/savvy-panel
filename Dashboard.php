@@ -69,6 +69,10 @@ class Dashboard {
 		// return early if not executed by admin
 		if ( ! is_admin() ) return;
 
+		if ( !defined( SAVVYPANEL_URL ) ) {
+			define( SAVVYPANEL_URL , \dirname(__FILE__) );
+		}		
+
 		// add the settings menu
 		add_action( 'admin_menu', array( $this , 'add_dashboard_menu' ) );
 
@@ -82,9 +86,6 @@ class Dashboard {
 	 */
 	public function dashboard_styles_scripts() {
 
-		if ( !defined( SAVVYPANEL_URL ) ) {
-			define( SAVVYPANEL_URL , \dirname(__FILE__) );
-		}
 
 		// load the jquery-tabs css and js
 		wp_enqueue_style( 'jquery-tabs'	, SAVVYPANEL_URL . 'css/jquery.tabs.min.css'	, array(), SAVVYPANEL_VERSION );
