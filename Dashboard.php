@@ -77,7 +77,7 @@ class Dashboard {
 		add_action( 'admin_menu', array( $this , 'add_dashboard_menu' ) );
 
 		// perform actions here
-		do_action( "savvypanel/dashboard/{$this->settings['id']}/init" , $settings );
+		do_action( "savvypanel/dashboard/{$this->settings['id']}/init" , $this->settings );
 	}
 
 	/**
