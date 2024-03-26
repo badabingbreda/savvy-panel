@@ -8,5 +8,8 @@
             "email": "didou@badabing.nl"
         }
     ],
+    "autoload": {
+        "psr-4": { "SavvyPanel\\": "" }
+    },    
     "require": {}
 }
