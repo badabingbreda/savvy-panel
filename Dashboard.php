@@ -72,11 +72,8 @@ class Dashboard {
 		// add the settings menu
 		add_action( 'admin_menu', array( $this , 'add_dashboard_menu' ) );
 
-		// check for save action
-		if ( isset( $_REQUEST['page'] ) && $this->settings['id'] == $_REQUEST['page'] ) {
-			add_action( 'admin_enqueue_scripts', array( $this , 'dashboard_styles_scripts' ) );
-			$this->save();
-		}
+		// perform actions here
+		do_action( "savvypanel/dashboard/{$this->settings['id']}/init" , $settings );
 	}
 
 	/**
