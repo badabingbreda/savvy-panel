@@ -238,8 +238,8 @@ savvyPanel.prototype = {
    },
 
    global_actions: function( ) {
-       if ( typeof document.beaverCSSActions !== 'undefined' ) {
-           document.beaverCSSActions.forEach( action => {
+       if ( typeof document.savvyPanelActions !== 'undefined' ) {
+           document.savvyPanelActions.forEach( action => {
                if ( 
                    action.id == this.settings?.id && 
                    action?.hook || false && 
@@ -249,8 +249,8 @@ savvyPanel.prototype = {
                }
            });
        }
-       if ( typeof document.beaverCSSFilters !== 'undefined' ) {
-           document.beaverCSSFilters.forEach( action => {
+       if ( typeof document.savvyPanelFilters !== 'undefined' ) {
+           document.savvyPanelFilters.forEach( action => {
                if ( 
                    action.id == this.settings?.id && 
                    action?.hook || false && 
