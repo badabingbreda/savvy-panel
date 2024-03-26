@@ -34,6 +34,8 @@ savvyPanel.prototype = {
 
         const _this = this;
 
+        this.global_actions();
+
         this.add_action( 'savvyInit' , this.initSwitch.bind( _this ) , 10 );
         this.add_action( 'savvyinit' , this.addSaveChangesListener.bind( this ) , 10 );
         this.add_action( 'savvyinit' , this.setColorisSettings.bind( this ) , 10 );
@@ -43,10 +45,10 @@ savvyPanel.prototype = {
         this.add_filter( 'savvyGetControlValue' , this.getControlTextValue.bind( this ) , 10 );
         this.add_filter( 'savvyGetControlValue' , this.getControlSliderValue.bind( this ) , 10 );
         
-        this.do_action( 'init' , this.settings );
+        this.do_action( 'savvyInit' , this );
     },
     
-    setColorisSettings : function( settings ) {
+    setColorisSettings : function( savvy ) {
         if ( typeof window.Coloris !== 'function' ) return;
         window.Coloris({
             themeMode: 'dark',
@@ -54,22 +56,22 @@ savvyPanel.prototype = {
         });
     },
     
-    initSwitch : function( settings ) {
+    initSwitch : function( savvy ) {
         document.querySelectorAll( '.control-field.switch input' ).forEach( 
             function( elem ) {
                 this.initState( elem );
                 elem.addEventListener( 'change' , function (e) { this.handleSwitchClick( e ); }.bind( this ) );
-            }.bind( this )
+            }.bind( savvy )
         );
     },
 
-    addSaveChangesListener : function( settings ) {
+    addSaveChangesListener : function( savvy ) {
         document.querySelector( '.dashboard-save-changes' ).addEventListener( 'click' , function(e) {
             if ( !this.sending ) {
                 // do not allow new clicks while sending
-                do_action( 'savvyUpdate' , this );
+                do_action( 'savvyUpdate' , savvy );
             }
-        }.bind( this ) );
+        }.bind( savvy ) );
     },
 
     handleSwitchClick : function ( e ) {
