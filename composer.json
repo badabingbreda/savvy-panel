@@ -1,7 +1,11 @@
 {
     "name": "badabingbreda/savvy-panel",
+    "keywords": ["wordpress" , "settings" , "dashboard" , "panel"],
     "description": "Create WordPress Dashboard Panels and controls",
     "type": "library",
+    "license": [
+        "MIT"
+    ],    
     "authors": [
         {
             "name": "badabingbreda",
