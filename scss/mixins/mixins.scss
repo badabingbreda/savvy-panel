@@ -1,0 +1,8 @@
+@mixin back-and-border( $color , $darken : 10% ) {
+    background-color: $color;
+    border-color: darken( $color , $darken );
+
+    &:hover {
+        background-color: darken( $color , $darken );
+    }
+}
