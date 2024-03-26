@@ -1,0 +1,12 @@
+{
+    "name": "badabingbreda/savvy-panel",
+    "description": "Create WordPress Dashboard Panels and controls",
+    "type": "library",
+    "authors": [
+        {
+            "name": "badabingbreda",
+            "email": "didou@badabing.nl"
+        }
+    ],
+    "require": {}
+}
