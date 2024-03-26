@@ -1,0 +1,101 @@
+#adminoptions-tab {
+  /* tab-content heading */
+  /* border on active tab option */
+  /* extra padding on messages */
+  /*  license is active */
+  /* license is inactive */
+}
+#adminoptions-tab .jq-tab-content h3 {
+  padding-top: 0;
+  margin-top: 0;
+}
+#adminoptions-tab .jq-tab-title.active {
+  border-left: solid 8px #76C0A9 !important;
+}
+#adminoptions-tab .adminoptions-messages {
+  padding: 10px;
+}
+#adminoptions-tab .adminoptions-settings-form {
+  max-width: 450px;
+}
+#adminoptions-tab .adminoptions-hidden {
+  display: none;
+}
+#adminoptions-tab .lic-active {
+  color: green;
+}
+#adminoptions-tab .lic-inactive {
+  color: orange;
+}
+#adminoptions-tab .control-field.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 20px;
+}
+#adminoptions-tab .control-field.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+#adminoptions-tab .control-field.switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.1s;
+  /* Rounded sliders */
+}
+#adminoptions-tab .control-field.switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.1s;
+}
+#adminoptions-tab .control-field.switch .slider.round {
+  border-radius: 12px;
+}
+#adminoptions-tab .control-field.switch .slider.round:before {
+  border-radius: 50%;
+}
+#adminoptions-tab .control-field.switch input:checked + .slider {
+  background-color: #76C0A9;
+}
+#adminoptions-tab .control-field.switch input:checked + .slider:before {
+  transform: translateX(24px);
+}
+#adminoptions-tab .control-field.switch input:focus + .slider {
+  box-shadow: 0 0 1px #76C0A9;
+}
+#adminoptions-tab .control-field.slider .slider-label {
+  margin-bottom: 16px;
+}
+#adminoptions-tab .button-primary[type=submit] {
+  background-color: #76C0A9;
+  border-color: #53b093;
+}
+#adminoptions-tab .button-primary[type=submit]:hover {
+  background-color: #53b093;
+}
+
+/**
+ * Codemirror settings
+ */
+.CodeMirror {
+  height: auto;
+}
+
+.CodeMirror-scroll {
+  max-height: 90vh;
+}
+
+.hidden {
+  display:none;
+}

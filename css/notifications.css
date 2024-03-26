@@ -1,0 +1,193 @@
+:root {
+  --noti-sidebar-background: #ffffff;
+  --noti-color: white;
+  --noti-card-radius: 4px;
+  --noti-background-success: green;
+  --noti-background-error: red;
+  --noti-color-success: white;
+  --noit-color-error: white;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.notifications {
+  position: fixed;
+  top: 30px;
+  right: 0;
+  width: 18rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  margin: 0.5rem;
+}
+
+.noti {
+  position: relative;
+  height: 0;
+  -webkit-transition: height 300ms ease;
+  transition: height 300ms ease;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  opacity: 1;
+  color: var(--noti-color-success);
+}
+.noti .noticard {
+  position: absolute;
+  top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  isolation: isolate;
+  width: 18rem;
+  border-radius: var(--noti-card-radius);
+  overflow: hidden;
+  -webkit-animation: notiCardIn 250ms ease;
+          animation: notiCardIn 250ms ease;
+  padding: 5px 10px;
+}
+.noti .noticard:before {
+  position: absolute;
+  content: "";
+  inset: 0.0625rem;
+  border-radius: var(--noti-card-radius);
+  background: #18181b;
+  z-index: 2;
+}
+.noti .noticard:after {
+  position: absolute;
+  content: "";
+  width: 2px;
+  inset: 0.65rem auto 0.65rem 0.5rem;
+  border-radius: 2px;
+  background: var(--noti-sidebar-background);
+  -webkit-transition: -webkit-transform 300ms ease;
+  transition: -webkit-transform 300ms ease;
+  transition: transform 300ms ease;
+  transition: transform 300ms ease, -webkit-transform 300ms ease;
+  z-index: 4;
+}
+.noti .noticard:hover:after {
+  -webkit-transform: translateX(0.15rem);
+          transform: translateX(0.15rem);
+}
+.noti[data-status=success] {
+  color: var(--noti-color-success);
+}
+.noti[data-status=success] .noticard:before {
+  background: var(--noti-background-success);
+}
+.noti.out {
+  -webkit-animation: notiOut 500ms ease forwards;
+          animation: notiOut 500ms ease forwards;
+}
+.noti.out .noticard {
+  -webkit-animation: notiCardOut 500ms ease forwards;
+          animation: notiCardOut 500ms ease forwards;
+}
+.noti .notititle {
+  color: var(--noti-color);
+  padding: 0.65rem 0.5rem 0.4rem 1.25rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  -webkit-transition: -webkit-transform 300ms ease;
+  transition: -webkit-transform 300ms ease;
+  transition: transform 300ms ease;
+  transition: transform 300ms ease, -webkit-transform 300ms ease;
+  z-index: 5;
+}
+.noti .noti:hover .notititle {
+  -webkit-transform: translateX(0.15rem);
+          transform: translateX(0.15rem);
+}
+.noti .notidesc {
+  padding: 0 0.5rem 0.85rem 1.25rem;
+  -webkit-transition: -webkit-transform 300ms ease;
+  transition: -webkit-transform 300ms ease;
+  transition: transform 300ms ease;
+  transition: transform 300ms ease, -webkit-transform 300ms ease;
+  z-index: 5;
+}
+.noti .noti:hover .notidesc {
+  -webkit-transform: translateX(0.25rem);
+          transform: translateX(0.25rem);
+}
+.noti .notiglow,
+.noti .notiborderglow {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: radial-gradient(circle closest-side at center, white, transparent);
+  opacity: 0;
+  -webkit-transition: opacity 300ms ease;
+  transition: opacity 300ms ease;
+}
+.noti .notiglow {
+  z-index: 3;
+}
+.noti .notiborderglow {
+  z-index: 1;
+}
+.noti:hover .notiglow {
+  opacity: 0.1;
+}
+.noti:hover .notiborderglow {
+  opacity: 0.1;
+}
+
+@-webkit-keyframes notiOut {
+  to {
+    height: 0;
+  }
+}
+
+@keyframes notiOut {
+  to {
+    height: 0;
+  }
+}
+@-webkit-keyframes notiCardIn {
+  from {
+    -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+    opacity: 0;
+  }
+}
+@keyframes notiCardIn {
+  from {
+    -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes notiCardOut {
+  to {
+    opacity: 0;
+    -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+  }
+}
+@keyframes notiCardOut {
+  to {
+    opacity: 0;
+    -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+  }
+}
