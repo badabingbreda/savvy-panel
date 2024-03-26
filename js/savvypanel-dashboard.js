@@ -34,16 +34,14 @@ savvyPanel.prototype = {
 
         const _this = this;
 
-        this.add_action( 'init' , this.initSwitch.bind( _this ) , 10 );
-        this.add_action( 'init' , this.addSaveChangesListener.bind( this ) , 10 );
-        this.add_action( 'init' , this.setColorisSettings.bind( this ) , 10 );
+        this.add_action( 'savvyInit' , this.initSwitch.bind( _this ) , 10 );
+        this.add_action( 'savvyinit' , this.addSaveChangesListener.bind( this ) , 10 );
+        this.add_action( 'savvyinit' , this.setColorisSettings.bind( this ) , 10 );
 
-        this.add_filter( 'getControlValue' , this.getControlSwitchValue.bind( this ) , 10 );
-        this.add_filter( 'getControlValue' , this.getControlColorValue.bind( this ) , 10 );
-        this.add_filter( 'getControlValue' , this.getControlTextValue.bind( this ) , 10 );
-        this.add_filter( 'getControlValue' , this.getControlSliderValue.bind( this ) , 10 );
-
-
+        this.add_filter( 'savvyGetControlValue' , this.getControlSwitchValue.bind( this ) , 10 );
+        this.add_filter( 'savvyGetControlValue' , this.getControlColorValue.bind( this ) , 10 );
+        this.add_filter( 'savvyGetControlValue' , this.getControlTextValue.bind( this ) , 10 );
+        this.add_filter( 'savvyGetControlValue' , this.getControlSliderValue.bind( this ) , 10 );
         
         this.do_action( 'init' , this.settings );
     },
@@ -69,8 +67,7 @@ savvyPanel.prototype = {
         document.querySelector( '.dashboard-save-changes' ).addEventListener( 'click' , function(e) {
             if ( !this.sending ) {
                 // do not allow new clicks while sending
-                this.collect();
-
+                do_action( 'savvyUpdate' , this );
             }
         }.bind( this ) );
     },
@@ -97,45 +94,19 @@ savvyPanel.prototype = {
         }
     },
 
-    collect : function() {
+    collectSettings : function( ) {
         const tabs = document.querySelectorAll( '.jq-tab-content' );
         let settings = {};
         // go over the tabs
         tabs.forEach( (tab) => {
             // go over the controls
             tab.querySelectorAll( '.control-field' ).forEach( (control) => {
-                var currentValue = this.apply_filters( 'getControlValue' , null , control , control.dataset.controlType );
+                var currentValue = this.apply_filters( 'savvyGetControlValue' , null , control , control.dataset.controlType );
                 settings = {...settings , ...currentValue };
             });
         });
 
-        this.sending = true;
-
-        // use fetch
-        fetch( SAVVYPANEL_LOCAL.admin_ajax_url + `?action=savvypanel_update`,
-        {
-            method: 'POST',
-            headers: { 
-                'Accept' : 'application/json',
-                'Content-Type': 'application/json',
-                'X-WP-Nonce': SAVVYPANEL_LOCAL._wpnonce,
-            },
-            body: this.asFormData( settings ),
-        } )
-        .then( ( response ) => response.json() )
-        .then( ( data ) => {
-                this.sending = false;
-                console.log( data.notifications );
-                data.notifications.forEach( (noti, index) => {
-                    setTimeout( () => { notis.create( { title : noti.title , description : noti.description , duration: 5 ,  destroyOnClick: true } ); } , index * 300 );
-                });
-        })
-        .catch( (error) => {
-            this.sending = false;
-            console.log( 'I messed up ' , error );
-        } );
-
-
+        return settings;
     },
 
 	asFormData : function( data ) {
