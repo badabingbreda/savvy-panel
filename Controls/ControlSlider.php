@@ -21,8 +21,8 @@ class ControlSlider extends Control {
     ];
 
     public function enqueue_js() {
-        \wp_enqueue_script( 'toolcool-range-slider', SAVVYPANEL_URL . 'js/toolcool-range-slider.min.js', null, SAVVYPANEL_VERSION, false );
-        \wp_enqueue_script( 'toolcool-binding-labels', SAVVYPANEL_URL . 'js/tcrs-binding-labels.min.js', null, SAVVYPANEL_VERSION, false );
+        \wp_enqueue_script( 'toolcool-range-slider', SAVVYPANEL_URL . 'js/toolcool-range-slider.min.js', null, \SavvyPanel\Dashboard::SAVVYPANEL_VERSION, false );
+        \wp_enqueue_script( 'toolcool-binding-labels', SAVVYPANEL_URL . 'js/tcrs-binding-labels.min.js', null, \SavvyPanel\Dashboard::SAVVYPANEL_VERSION, false );
     }
 
 
