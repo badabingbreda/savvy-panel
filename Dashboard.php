@@ -70,7 +70,7 @@ class Dashboard {
 		if ( ! is_admin() ) return;
 
 		if ( !defined( 'SAVVYPANEL_URL' ) ) {
-			define( 'SAVVYPANEL_URL' , \dirname(__FILE__) );
+			define( 'SAVVYPANEL_URL' , \plugins_url( '/', __FILE__ ) );
 		}		
 
 		// add the settings menu
