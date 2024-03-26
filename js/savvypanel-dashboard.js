@@ -67,7 +67,7 @@ savvyPanel.prototype = {
 
     addSaveChangesListener : function( savvy ) {
         document.querySelector( '.dashboard-save-changes' ).addEventListener( 'click' , function(e) {
-            if ( !this.sending ) {
+            if ( !savvy.sending ) {
                 // do not allow new clicks while sending
                 do_action( 'savvyUpdate' , savvy );
             }
