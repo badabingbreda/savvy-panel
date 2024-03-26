@@ -37,15 +37,15 @@ savvyPanel.prototype = {
         this.global_actions();
 
         this.add_action( 'savvyInit' , this.initSwitch.bind( _this ) , 10 );
-        this.add_action( 'savvyinit' , this.addSaveChangesListener.bind( this ) , 10 );
-        this.add_action( 'savvyinit' , this.setColorisSettings.bind( this ) , 10 );
+        this.add_action( 'savvyInit' , this.addSaveChangesListener.bind( _this ) , 10 );
+        this.add_action( 'savvyInit' , this.setColorisSettings.bind( _this ) , 10 );
 
-        this.add_filter( 'savvyGetControlValue' , this.getControlSwitchValue.bind( this ) , 10 );
-        this.add_filter( 'savvyGetControlValue' , this.getControlColorValue.bind( this ) , 10 );
-        this.add_filter( 'savvyGetControlValue' , this.getControlTextValue.bind( this ) , 10 );
-        this.add_filter( 'savvyGetControlValue' , this.getControlSliderValue.bind( this ) , 10 );
+        this.add_filter( 'savvyGetControlValue' , this.getControlSwitchValue.bind( _this ) , 10 );
+        this.add_filter( 'savvyGetControlValue' , this.getControlColorValue.bind( _this ) , 10 );
+        this.add_filter( 'savvyGetControlValue' , this.getControlTextValue.bind( _this ) , 10 );
+        this.add_filter( 'savvyGetControlValue' , this.getControlSliderValue.bind( _this ) , 10 );
         
-        this.do_action( 'savvyInit' , this );
+        this.do_action( 'savvyInit' , _this );
     },
     
     setColorisSettings : function( savvy ) {
@@ -69,7 +69,7 @@ savvyPanel.prototype = {
         document.querySelector( '.dashboard-save-changes' ).addEventListener( 'click' , function(e) {
             if ( !savvy.sending ) {
                 // do not allow new clicks while sending
-                do_action( 'savvyUpdate' , savvy );
+                savvy.do_action( 'savvyUpdate' , savvy );
             }
         }.bind( savvy ) );
     },
@@ -270,5 +270,3 @@ window.onload = function( event ) {
     window.savvyPanel = new savvyPanel( {} );
     window.savvyPanel.init();
 }
-
-
