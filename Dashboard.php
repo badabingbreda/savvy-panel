@@ -69,8 +69,8 @@ class Dashboard {
 		// return early if not executed by admin
 		if ( ! is_admin() ) return;
 
-		if ( !defined( SAVVYPANEL_URL ) ) {
-			define( SAVVYPANEL_URL , \dirname(__FILE__) );
+		if ( !defined( 'SAVVYPANEL_URL' ) ) {
+			define( 'SAVVYPANEL_URL' , \dirname(__FILE__) );
 		}		
 
 		// add the settings menu
