@@ -3,8 +3,8 @@
   --noti-color: white;
   --noti-card-radius: 4px;
   --noti-background-success: green;
-  --noti-background-error: red;
   --noti-color-success: white;
+  --noti-background-error: red;
   --noit-color-error: white;
 }
 
@@ -91,6 +91,12 @@
 }
 .noti[data-status=success] .noticard:before {
   background: var(--noti-background-success);
+}
+.noti[data-status=error] {
+  color: var(--noti-color-error);
+}
+.noti[data-status=error] .noticard:before {
+  background: var(--noti-background-error);
 }
 .noti.out {
   -webkit-animation: notiOut 500ms ease forwards;

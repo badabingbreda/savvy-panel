@@ -12,7 +12,7 @@ namespace SavvyPanel;
  */
 class Dashboard {
 
-	const SAVVYPANEL_VERSION = '0.0.1';
+	const SAVVYPANEL_VERSION = '0.0.2';
 
 	/**
 	 * errors that can be outputted to the dashboard
