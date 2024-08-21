@@ -142,7 +142,7 @@ In there, make sure to check the nonce before anything else:
                 'success' => false, 
                 'notifications' => [
                     [ 
-                        'success' => false,
+                        'status' => 'error',
                         'title' => 'Nonce Failed',
                         'description' => 'Unable to verify nonce or failed.',
                     ]
@@ -159,7 +159,7 @@ In there, make sure to check the nonce before anything else:
             'success' => true, 
             'notifications' => [
                     [ 
-                        'success' => true,
+                        'status' => 'success',
                         'title' => 'Well done!',
                         'description' => 'Settings have been updated. Feel free to make some more!',
                     ]
