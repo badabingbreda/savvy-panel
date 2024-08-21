@@ -116,7 +116,7 @@ In your `savvy-panel.js` file, add your callback for the savvy hooks, like so:
                 .then( ( data ) => {
                         savvy.sending = false;
                         data.notifications.forEach( (noti, index) => {
-                            setTimeout( () => { notis.create( { title : noti.title , description : noti.description , duration: 5 ,  destroyOnClick: true } ); } , index * 300 );
+                            setTimeout( () => { notis.create( { title : noti.title , description : noti.description , duration: 5 ,  status: noti.status, destroyOnClick: true } ); } , index * 300 );
                         });
                 })
                 .catch( (error) => {

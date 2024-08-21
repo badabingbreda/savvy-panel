@@ -79,20 +79,29 @@ savvyPanel.prototype = {
         let target = switchElem.dataset.switchTarget,
             classtoggle = switchElem.dataset.switchClasstoggle;
 
-        document.querySelector( target ).classList.toggle( classtoggle );
+        // only toggle class if both target and classtoggle have been set
+        // otherwise just toggle the switch visually
+        if ( target && classtoggle ) document.querySelector( target ).classList.toggle( classtoggle );
 
     },
 
     initState : function( elem ) {
         const switchElem = elem.closest( '.control-field' );
+
         let target = switchElem.dataset.switchTarget,
             classtoggle = switchElem.dataset.switchClasstoggle,
             laststate = switchElem.dataset.switchLaststate;
-        
-        if ( laststate === 'true' ) { 
-            document.querySelector( target ).classList.remove( classtoggle );
-        } else {
-            document.querySelector( target ).classList.add( classtoggle );
+        /**
+         * check if target and classtoggle have been set
+         * if entered, when using the control it toggles a class and 
+         * can be used to show/hide other sections/controls
+         */
+        if ( target && classtoggle ) {
+            if ( laststate === 'true' ) { 
+                document.querySelector( target ).classList.remove( classtoggle );
+            } else {
+                document.querySelector( target ).classList.add( classtoggle );
+            }
         }
     },
 

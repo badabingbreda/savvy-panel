@@ -10,8 +10,8 @@ $font-color-error : white;
 	--noti-color: #{$font-color-success};
 	--noti-card-radius: #{$card-radius};
 	--noti-background-success : #{$background-success};
-	--noti-background-error : #{$background-error};
 	--noti-color-success : #{$font-color-success};
+	--noti-background-error : #{$background-error};
 	--noit-color-error : #{$font-color-error};
 }
 
@@ -83,11 +83,16 @@ $font-color-error : white;
 	}
 
 	&[data-status=success] {
-
 		color: var(--noti-color-success);
-	
 		.noticard:before {
 			background: var(--noti-background-success);
+		}
+	}
+
+	&[data-status=error] {
+		color: var(--noti-color-error);
+		.noticard:before {
+			background: var(--noti-background-error);
 		}
 	}
 
