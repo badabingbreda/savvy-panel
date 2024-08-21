@@ -12,7 +12,7 @@ namespace SavvyPanel;
  */
 class Dashboard {
 
-	const SAVVYPANEL_VERSION = '0.0.2';
+	const SAVVYPANEL_VERSION = '0.0.3';
 
 	/**
 	 * errors that can be outputted to the dashboard
@@ -95,11 +95,17 @@ class Dashboard {
 		wp_enqueue_style( 'jquery-tabs'	, SAVVYPANEL_URL . '/css/jquery.tabs.min.css'	, array(), self::SAVVYPANEL_VERSION );
 		wp_enqueue_script( 'jquery-tabs', SAVVYPANEL_URL . '/js/jquery.tabs.min.js'		, array(), self::SAVVYPANEL_VERSION );
 
-		wp_enqueue_style( 'notifications'	, SAVVYPANEL_URL . '/css/notifications.css'	, array(), self::SAVVYPANEL_VERSION );
+		// allow disabling default css so that custom css can be enqueued
+		if ( apply_filters( 'savvypanel/css/notifications' , true ) ) {
+			wp_enqueue_style( 'notifications'	, SAVVYPANEL_URL . '/css/notifications.css'	, array(), self::SAVVYPANEL_VERSION );
+		}
 		wp_enqueue_script( 'notifications', SAVVYPANEL_URL . '/js/notifications.js'		, array(), self::SAVVYPANEL_VERSION , true );
 
 		// savvypanel dashboard css and js
-		wp_enqueue_style( 'savvypanel-dashboard'	, SAVVYPANEL_URL . '/css/savvypanel-dashboard.css'	, array(), self::SAVVYPANEL_VERSION );
+		// allow disabling default css so that custom css can be enqueued
+		if ( apply_filters( 'savvypanel/css/dashboard' , true ) ) {
+			wp_enqueue_style( 'savvypanel-dashboard'	, SAVVYPANEL_URL . '/css/savvypanel-dashboard.css'	, array(), self::SAVVYPANEL_VERSION );
+		}
 		wp_enqueue_script( 'savvypanel-dashboard'	, SAVVYPANEL_URL . '/js/savvypanel-dashboard.js'	, array(), self::SAVVYPANEL_VERSION );
 
 		// localize the script for use in JS

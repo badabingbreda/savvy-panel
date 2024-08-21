@@ -168,3 +168,12 @@ In there, make sure to check the nonce before anything else:
         
         wp_die();
     }
+
+## filters
+
+You can use filter hooks to disable enqueueing of the default notofications and/or dashboard css:
+
+    add_filter( 'savvypanel/css/notifications' , '__return_false' );
+    add_filter( 'savvypanel/css/dashboard' , '__return_false' );
+
+You can use the scss files located in the package to generate your own using a preprocessor of choice.
