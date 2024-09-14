@@ -37,13 +37,9 @@ class ControlText extends Control {
         $class = $this->outputIf( $settings[ 'class' ] );
         if ( $this->settings[ 'suffix' ] ) $class .= ' has-suffix';
 
-        if ( !empty($this->settings[ 'style']) ) {
-            foreach( $this->settings[ 'style' ] as $k => $property ) {
-                $style .= (new Convert( $k ))->toKebab() . ":" . $property . ";";
-            }
 
-        }
-    
+        $style = $this->styleParser();   
+
         return  
         <<<EOL
         <div class="control-field text {$class}"

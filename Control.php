@@ -1,6 +1,8 @@
 <?php
 namespace SavvyPanel;
 
+use Jawira\CaseConverter\Convert;
+
 abstract class Control implements ControlInterface {
 
     public $type;
@@ -113,6 +115,17 @@ abstract class Control implements ControlInterface {
                 <div class="control">{$this->__($output)}</div>
             </div>
         EOL;
+    }
+
+    public function styleParser() {
+        $style = "";
+        if ( !empty($this->settings[ 'style']) ) {
+            foreach( $this->settings[ 'style' ] as $k => $property ) {
+                $style .= (new Convert( $k ))->toKebab() . ":" . $property . ";";
+            }
+        }
+
+        return $style;
     }
     
     /**
