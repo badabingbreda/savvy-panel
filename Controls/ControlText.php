@@ -2,6 +2,7 @@
 namespace SavvyPanel\Controls;
 
 use SavvyPanel\Control;
+use Jawira\CaseConverter\Convert;
 
 class ControlText extends Control {
 
@@ -27,6 +28,7 @@ class ControlText extends Control {
         $settings = $this->settings;
     
         $suffix = "";
+        $style = "";
         
         if ( $this->settings[ 'suffix' ] ) {
             $suffix = "<div class=\"suffix\">{$this->settings['suffix']}</div>";
@@ -35,7 +37,9 @@ class ControlText extends Control {
         $class = $this->outputIf( $settings[ 'class' ] );
         if ( $this->settings[ 'suffix' ] ) $class .= ' has-suffix';
 
-        $style = $this->styleParser();
+
+        $style = $this->styleParser();   
+
         return  
         <<<EOL
         <div class="control-field text {$class}"

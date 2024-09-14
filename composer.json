@@ -15,5 +15,7 @@
     "autoload": {
         "psr-4": { "SavvyPanel\\": "" }
     },    
-    "require": {}
+    "require": {
+        "jawira/case-converter": "^3.5"
+    }
 }
