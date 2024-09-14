@@ -168,7 +168,7 @@ $admin-color-primary : #76C0A9 !default;
         align-items: stretch;
         margin-left: 12px;
         input {
-            width: 8ch;
+            min-width: 8ch;
             text-align: center;
             font-weight: 700;
             margin:0;
@@ -183,7 +183,6 @@ $admin-color-primary : #76C0A9 !default;
         .suffix {
             margin:0;
             outline: 0;            
-            width: 4ch;
             display: flex;
             background-color: #{$input-background-darken};
             color: #fff;
