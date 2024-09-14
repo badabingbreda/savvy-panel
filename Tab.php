@@ -16,6 +16,7 @@ class Tab implements TabInterface {
         'menu_title' => 'Menu Title',
         'menu_slug' => 'menu-slug',
         'priority' => 10,
+        'save_button' => false,
     ];
     
     /**
@@ -66,8 +67,13 @@ class Tab implements TabInterface {
 
     private function tab_content() {
         $content = apply_filters( 'savvypanel/dashboard/' . $this->settings[ 'dashboard' ] . '/tabs/' . $this->settings[ 'id' ] . '/controls' , '' );
+        if ( $this->settings[ 'save_button' ] === true ) $content .= $this->render_submit_button( $this->settings[ 'dashboard' ] . '-tab-' . $this->settings[ 'id' ] );
         return $content;
     }
+
+	public function render_submit_button( $classes = "" ) {
+		return "<button class=\"dashboard-save-changes {$classes}\">Save Changes</button>";
+	}
 
     private function tab_start() {
 

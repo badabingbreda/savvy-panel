@@ -31,6 +31,7 @@ class Dashboard {
 		'type' => 'submenu',
 		'icon_url' => null,
 		'position' => null,
+		'save_button' => true,
 	];
 
 
@@ -42,8 +43,6 @@ class Dashboard {
 	public function __construct( $settings = [] ) {
 		$this->settings = $this->parse_settings( $settings , $this->defaults );
 		add_action( 'init', array( $this , 'init_hooks' ), 100 );
-
-		add_action( 'savvypanel/render_options/' . $this->settings[ 'id' ] , array( $this , 'render_action' ) , 10 );
 	}
 
     /**
@@ -146,7 +145,7 @@ class Dashboard {
 		$menu_title		= $this->settings['menu_title'];
 		$capability		= $this->settings['capability'];
 		$menu_slug		= $this->settings['id'];
-		$callback 		= array( $this , 'do_render_options' );
+		$callback 		= array( $this , 'render_options' );
 
 		if ( $this->settings[ 'type' ] === 'submenu' ) {
 			add_submenu_page( 
@@ -172,10 +171,6 @@ class Dashboard {
 
 	}
 
-	public function do_render_options() {
-		do_action( 'savvypanel/render_options/' . $this->settings[ 'id' ] );
-	}
-
 	/**
 	 * render the options-template to the browser
 	 * @return [type] [description]
@@ -193,7 +188,7 @@ class Dashboard {
 			<div class="jq-tab-wrapper" id="adminoptions-tab">
 				<div class="jq-tab-menu">
 					<?php echo $this->render_settings_tabs(); ?>
-					<?php echo $this->render_submit_button(); ?>
+					<?php if ( $this->settings[ 'save_button' ] === true ) echo $this->render_submit_button(); ?>
 				</div>
 				<div class="jq-tab-content-wrapper">
 					<?php echo $this->render_forms() ?>
@@ -225,8 +220,8 @@ class Dashboard {
 		return $return;
 	}
 
-	public function render_submit_button() {
-		return "<button class=\"dashboard-save-changes\">Save Changes</button>";
+	public function render_submit_button( $classes = "" ) {
+		return "<button class=\"dashboard-save-changes {$classes}\">Save Changes</button>";
 	}
 
 	/**
