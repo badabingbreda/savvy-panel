@@ -137,7 +137,6 @@
   margin-left: 12px;
 }
 .jq-tab-content .control-field.text input {
-  width: 8ch;
   text-align: center;
   font-weight: 700;
   margin: 0;
@@ -150,7 +149,6 @@
 .jq-tab-content .control-field.text .suffix {
   margin: 0;
   outline: 0;
-  width: 4ch;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

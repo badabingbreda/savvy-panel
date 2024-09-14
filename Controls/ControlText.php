@@ -19,6 +19,7 @@ class ControlText extends Control {
         "tab" => null,
         "section" => null,
         "priority" => 10,
+        "style" => [],
 ];
 
     public function __( $output = '' ) {
@@ -33,7 +34,8 @@ class ControlText extends Control {
 
         $class = $this->outputIf( $settings[ 'class' ] );
         if ( $this->settings[ 'suffix' ] ) $class .= ' has-suffix';
-    
+
+        $style = $this->styleParser();
         return  
         <<<EOL
         <div class="control-field text {$class}"
@@ -44,6 +46,7 @@ class ControlText extends Control {
             id="{$settings['id']}"
             name="{$settings[ "id" ]}" 
             value="{$settings[ "value" ]}" 
+            style="{$style}"
         >{$suffix}
 
         </div>
