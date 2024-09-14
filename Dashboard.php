@@ -42,6 +42,8 @@ class Dashboard {
 	public function __construct( $settings = [] ) {
 		$this->settings = $this->parse_settings( $settings , $this->defaults );
 		add_action( 'init', array( $this , 'init_hooks' ), 100 );
+
+		add_action( 'savvypanel/render_options/' . $this->settings[ 'id' ] , array( $this , 'render_action' ) , 10 );
 	}
 
     /**
@@ -144,7 +146,7 @@ class Dashboard {
 		$menu_title		= $this->settings['menu_title'];
 		$capability		= $this->settings['capability'];
 		$menu_slug		= $this->settings['id'];
-		$callback 		= array( $this , 'render_options' );
+		$callback 		= array( $this , 'do_render_options' );
 
 		if ( $this->settings[ 'type' ] === 'submenu' ) {
 			add_submenu_page( 
@@ -170,13 +172,16 @@ class Dashboard {
 
 	}
 
+	public function do_render_options() {
+		do_action( 'savvypanel/render_options/' . $this->settings[ 'id' ] );
+	}
+
 	/**
 	 * render the options-template to the browser
 	 * @return [type] [description]
 	 */
 	public function render_options() {
 
-		$tabs = apply_filters( 'savvypanel/dashboard/' . $this->settings[ 'id' ] . '/tabs', [] );
 		?>
 		<div class="adminoptions-options">
 			<div class="adminoptions-heading">
