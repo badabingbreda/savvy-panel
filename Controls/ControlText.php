@@ -2,6 +2,7 @@
 namespace SavvyPanel\Controls;
 
 use SavvyPanel\Control;
+use Jawira\CaseConverter\Convert;
 
 class ControlText extends Control {
 
@@ -19,6 +20,7 @@ class ControlText extends Control {
         "tab" => null,
         "section" => null,
         "priority" => 10,
+        "style" => [],
 ];
 
     public function __( $output = '' ) {
@@ -26,6 +28,7 @@ class ControlText extends Control {
         $settings = $this->settings;
     
         $suffix = "";
+        $style = "";
         
         if ( $this->settings[ 'suffix' ] ) {
             $suffix = "<div class=\"suffix\">{$this->settings['suffix']}</div>";
@@ -33,6 +36,13 @@ class ControlText extends Control {
 
         $class = $this->outputIf( $settings[ 'class' ] );
         if ( $this->settings[ 'suffix' ] ) $class .= ' has-suffix';
+
+        if ( !empty($this->settings[ 'style']) ) {
+            foreach( $this->settings[ 'style' ] as $k => $property ) {
+                $style .= (new Convert( $k ))->toKebab() . ":" . $property . ";";
+            }
+
+        }
     
         return  
         <<<EOL
@@ -44,6 +54,7 @@ class ControlText extends Control {
             id="{$settings['id']}"
             name="{$settings[ "id" ]}" 
             value="{$settings[ "value" ]}" 
+            style="{$style}"
         >{$suffix}
 
         </div>
