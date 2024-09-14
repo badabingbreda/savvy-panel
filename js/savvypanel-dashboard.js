@@ -69,7 +69,7 @@ savvyPanel.prototype = {
         document.querySelector( '.dashboard-save-changes' ).addEventListener( 'click' , function(e) {
             if ( !savvy.sending ) {
                 // do not allow new clicks while sending
-                savvy.do_action( 'savvyUpdate' , savvy );
+                savvy.do_action( 'savvyUpdate' , savvy , e );
             }
         }.bind( savvy ) );
     },
