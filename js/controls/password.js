@@ -37,7 +37,7 @@
         if ( fields.length > 0 ) {
             for ( var i = 0; i < fields.length; i++ ) {
                 var field = fields[i];
-                if ( field.dataset.patternMatch === "" ) continue;
+                if ( field.dataset.patternMatch === "" || field.dataset.required === '0' ) continue;
 
                 let controlwrapper = field.closest( '.controlwrapper');
                 let value = controlwrapper.querySelector( 'input' ).value;
