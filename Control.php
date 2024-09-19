@@ -77,12 +77,16 @@ abstract class Control implements ControlInterface {
     public function scripts() {
         // enqeue if the method has been created on the control
         if ( method_exists( get_called_class() , 'enqueue_js' ) ) {
-            add_action( 'admin_enqueue_scripts' , array( $this , 'enqueue_js' ) , 10 , 1);
+            if ( isset( $_REQUEST['page'] ) && $this->settings['dashboard'] == $_REQUEST['page'] ) {
+                add_action( 'admin_enqueue_scripts' , array( $this , 'enqueue_js' ) , 10 , 1);
+            }
         }
         
         // enqueue if the method has been created on the control
         if ( method_exists( get_called_class() , 'enqueue_css' ) ) {
-            add_action( 'admin_enqueue_scripts' , array( $this , 'enqueue_css' ) , 10 , 1);
+            if ( isset( $_REQUEST['page'] ) && $this->settings['dashboard'] == $_REQUEST['page'] ) {
+                add_action( 'admin_enqueue_scripts' , array( $this , 'enqueue_css' ) , 10 , 1);
+            }
         }
     }
     

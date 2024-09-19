@@ -77,9 +77,9 @@ class Dashboard {
 
 		// add the settings menu
 		add_action( 'admin_menu', array( $this , 'add_dashboard_menu' ) );
-
-		// check for save action
+		
 		if ( isset( $_REQUEST['page'] ) && $this->settings['id'] == $_REQUEST['page'] ) {
+		// check for save action
 			add_action( 'admin_enqueue_scripts', array( $this , 'dashboard_styles_scripts' ) );
 			// perform actions here
 			do_action( "savvypanel/dashboard/{$this->settings['id']}/init" , $this->settings );
@@ -177,6 +177,8 @@ class Dashboard {
 	 * @return [type] [description]
 	 */
 	public function render_options() {
+		// if we're not rendering this dashboard, skip rendering it any further, sidebar menu items are enough
+		if ( !isset( $_REQUEST['page'] ) || $this->settings['id'] !== $_REQUEST['page'] ) return;
 
 		?>
 		<div class="adminoptions-options" 

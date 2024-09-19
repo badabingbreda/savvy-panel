@@ -21,7 +21,7 @@ class ControlPassword extends Control {
         "priority" => 10,
         "style" => [],
         "required" => false,
-        "pattern" => null,
+        "pattern" => "",
     ];
 
     public function enqueue_js() {
