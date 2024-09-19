@@ -2,6 +2,7 @@
 namespace SavvyPanel\Controls;
 
 use SavvyPanel\Control;
+use SavvyPanel\Dashboard;
 
 class ControlSection extends Control {
 
@@ -14,14 +15,37 @@ class ControlSection extends Control {
         "dashboard" => null,
         "tab" => null,
         "section" => null,
+        "collapseable" => true,
+        "collapsed" => false,
         "priority" => 10,
     ];
 
+    public function enqueue_js() {
+        wp_enqueue_script( 'savvy-control-section', SAVVYPANEL_URL . 'js/controls/section.js', array(), Dashboard::SAVVYPANEL_VERSION , true );
+    }
+
+
     public function controlwrapper( $output ) {
+        $collapsable = "";
+        $collapsed = "";
+
+        if ( $this->settings[ 'collapseable' ] ) {
+            $collapsable = "data-section-can-collapse=\"" .
+                $this->outputTrueFalse( $this->settings[ 'collapseable' ] ) . 
+                "\""
+            ;
+            $collapsed = "data-section-collapsed=\"" .
+                $this->outputTrueFalse( $this->settings[ 'collapsed' ] ) .
+                "\""
+            ;
+        }
 
         return $output .=<<<EOL
-        <div class="section" id="{$this->settings['id']}">
-        <h3>{$this->settings[ 'label' ]}</h3>
+        <div class="{$this->type}" id="{$this->settings['id']}" {$collapsable}{$collapsed}>
+        <h3>
+            {$this->settings[ 'label' ]}
+            <div sp-collapse></div>
+        </h3>
         {$this->__($output)}
         </div>
         EOL;

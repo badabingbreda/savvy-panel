@@ -136,6 +136,40 @@ $admin-color-primary : #76C0A9 !default;
         align-items: center;
         border-bottom: 2px solid #{$border-color-darken};
         margin-bottom: 20px;
+
+        &[data-section-can-collapse] {
+            h3 {
+                cursor: pointer;
+            }
+        }
+
+        h3 {
+            position: relative;
+
+            *[sp-collapse] {
+                position: absolute;
+                right: 0;
+                top: calc(50% - 9px);
+                > svg {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+
+        &[data-section-collapsed="1"] {
+            > h3 {
+                margin-bottom: 0;
+            }
+
+            svg {
+                transform: rotate(180deg);
+            }
+
+            .controlwrapper, .control-field {
+                display: none;
+            }
+        }
         
     }
     
@@ -152,6 +186,10 @@ $admin-color-primary : #76C0A9 !default;
         align-items: center;
         border-bottom: 2px solid #{$border-color-darken};
     
+        &.control-error {
+            border-color: red;
+        }
+
         > .label {
             font-weight: 500;
         }
@@ -216,7 +254,7 @@ $admin-color-primary : #76C0A9 !default;
         
     }
 
-    input[type=text], input[type=number] {
+    input[type=text], input[type=number], input[type=password] {
         background-color: #{$input-background};
         color: #f1f1f1;
         font-size: 1.2em;

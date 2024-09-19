@@ -37,7 +37,8 @@ class ControlDropdown extends Control {
 
         return $output .= 
         <<<EOL
-        <div class="control-field dropdown {$class}"  data-control-type="dropdown">
+        <div class="control-field {$this->type} {$class}"
+            data-control-type="{$this->type}">
             <select name="{$settings[ "id" ]}" id="{$settings[ "id" ]}">
                 {$options}
             </select>

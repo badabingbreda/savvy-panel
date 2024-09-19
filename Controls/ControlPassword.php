@@ -4,9 +4,9 @@ namespace SavvyPanel\Controls;
 use SavvyPanel\Control;
 use SavvyPanel\Dashboard;
 
-class ControlText extends Control {
+class ControlPassword extends Control {
 
-    public $type = 'text';
+    public $type = 'password';
 
     public $defaults = [
         "id" => "",
@@ -14,15 +14,14 @@ class ControlText extends Control {
         "value" => "",
         "placeholder" => "",
         "class" => null,
-        "type" => "text",
         "suffix" => null,
         "dashboard" => null,
         "tab" => null,
         "section" => null,
         "priority" => 10,
-        "required" => false,
-        "pattern" => "",
         "style" => [],
+        "required" => false,
+        "pattern" => null,
     ];
 
     public function enqueue_js() {
@@ -35,6 +34,7 @@ class ControlText extends Control {
     
         $suffix = "";
         $style = "";
+        $pattern = "";
         
         if ( $this->settings[ 'suffix' ] ) {
             $suffix = "<div class=\"suffix\">{$this->settings['suffix']}</div>";
@@ -49,23 +49,23 @@ class ControlText extends Control {
         ;
 
 
-        $style = $this->styleParser();   
+        $style = $this->styleParser();  
 
         return  
         <<<EOL
         <div class="control-field {$this->type} {$class}"
-        {$required}
         data-pattern-match="{$settings['pattern']}"
+        {$required}
         data-control-type="{$this->type}">
         <input 
-            type="{$settings['type']}"
+            type="password"
             placeholder="{$settings['placeholder']}"
             id="{$settings['id']}"
             name="{$settings[ "id" ]}" 
             value="{$settings[ "value" ]}" 
             style="{$style}"
+            {$pattern}
         >{$suffix}
-
         </div>
         EOL;
     }

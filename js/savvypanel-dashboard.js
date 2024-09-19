@@ -44,7 +44,7 @@ savvyPanel.prototype = {
         this.add_filter( 'savvyGetControlValue' , this.getControlColorValue.bind( _this ) , 10 );
         this.add_filter( 'savvyGetControlValue' , this.getControlTextValue.bind( _this ) , 10 );
         this.add_filter( 'savvyGetControlValue' , this.getControlSliderValue.bind( _this ) , 10 );
-        
+
         this.do_action( 'savvyInit' , _this );
     },
     
@@ -67,11 +67,24 @@ savvyPanel.prototype = {
 
     addSaveChangesListener : function( savvy ) {
         document.querySelector( '.dashboard-save-changes' ).addEventListener( 'click' , function(e) {
+            let notifications = this.testFields();
+            if ( notifications.length > 0 ) {
+                notifications.forEach( (noti, index) => {
+                    setTimeout( () => { notis.create( { title : noti.title , description : noti.description , duration: 5 ,  status: noti.status , destroyOnClick: true } ); } , index * 300 );
+                });
+                return;
+            }
             if ( !savvy.sending ) {
                 // do not allow new clicks while sending
                 savvy.do_action( 'savvyUpdate' , savvy , e );
             }
         }.bind( savvy ) );
+    },
+    
+    testFields : function( savvy ) {
+        // perform tests on fields that require that and return notices
+        var notifications = this.apply_filters( 'savvyTestFields' , [] );
+        return notifications;
     },
 
     handleSwitchClick : function ( e ) {
@@ -275,7 +288,8 @@ savvyPanel.prototype = {
 
 }
 
+window.savvyPanel = new savvyPanel( {} );
+
 window.onload = function( event ) {
-    window.savvyPanel = new savvyPanel( {} );
     window.savvyPanel.init();
 }

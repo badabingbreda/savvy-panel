@@ -7,6 +7,8 @@ interface ControlInterface {
 
     public function outputIf( $value );
 
+    public function outputTrueFalse( $value );
+
     public function enqueue_js();
 
     public function enqueue_css();

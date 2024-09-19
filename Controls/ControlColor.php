@@ -32,14 +32,15 @@ class ControlColor extends Control {
 
         return  
         <<<EOL
-        <div class="control-field color" data-control-type="color">
-        <input 
-        type="text" 
-        class="{$settings['class']}"
-        id="{$settings['id']}" 
-        name="{$settings['id']}"
-        value="{$settings['value']}" 
-        data-coloris>
+        <div class="control-field {$this->type}"
+            data-control-type="{$this->type}">
+            <input 
+                type="text" 
+                class="{$settings['class']}"
+                id="{$settings['id']}" 
+                name="{$settings['id']}"
+                value="{$settings['value']}" 
+                data-coloris>
         </div>
         EOL;
 

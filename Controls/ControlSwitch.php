@@ -29,8 +29,8 @@ class ControlSwitch extends Control {
 
         return  
         <<<EOL
-        <div class="control-field switch {$class}"
-        data-control-type="switch"
+        <div class="control-field {$this->type} {$class}"
+        data-control-type="{$this->type}"
         data-switch-target="{$settings['target']}"
         data-switch-classtoggle="{$settings['classtoggle']}"
         data-switch-event="{$settings['event']}"

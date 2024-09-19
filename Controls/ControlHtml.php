@@ -27,8 +27,8 @@ class ControlHtml extends Control {
     
         return  
         <<<EOL
-        <div class="control-field html {$class}"
-        data-control-type="html">
+        <div class="control-field {$this->type} {$class}"
+        data-control-type="{$this->type}">
         {$this->settings['value']}
         </div>
         EOL;

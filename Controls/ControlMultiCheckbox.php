@@ -24,7 +24,7 @@ class ControlMultiCheckbox extends Control {
 
         $return = '';
 
-        $template = '<div data-control-type="multicheckbox"><input type="checkbox" name="'.$settings['id'].'[]" id="'.$settings['id'].'_%s" value="%s" %s %s><label for="'.$settings['id'].'_%s">%s</label></div>';
+        $template = '<div data-control-type="{$this->type}"><input type="checkbox" name="'.$settings['id'].'[]" id="'.$settings['id'].'_%s" value="%s" %s %s><label for="'.$settings['id'].'_%s">%s</label></div>';
 
         foreach ($settings['options'] as $option) {
             $return .= sprintf($template, 

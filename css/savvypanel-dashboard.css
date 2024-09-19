@@ -96,6 +96,31 @@
   border-bottom: 2px solid #86c3c3;
   margin-bottom: 20px;
 }
+.jq-tab-content .section[data-section-can-collapse] h3 {
+  cursor: pointer;
+}
+.jq-tab-content .section h3 {
+  position: relative;
+}
+.jq-tab-content .section h3 *[sp-collapse] {
+  position: absolute;
+  right: 0;
+  top: calc(50% - 9px);
+}
+.jq-tab-content .section h3 *[sp-collapse] > svg {
+  width: 18px;
+  height: 18px;
+}
+.jq-tab-content .section[data-section-collapsed="1"] > h3 {
+  margin-bottom: 0;
+}
+.jq-tab-content .section[data-section-collapsed="1"] svg {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.jq-tab-content .section[data-section-collapsed="1"] .controlwrapper, .jq-tab-content .section[data-section-collapsed="1"] .control-field {
+  display: none;
+}
 .jq-tab-content .controlwrapper {
   display: -ms-grid;
   display: grid;
@@ -111,6 +136,9 @@
       -ms-flex-align: center;
           align-items: center;
   border-bottom: 2px solid #86c3c3;
+}
+.jq-tab-content .controlwrapper.control-error {
+  border-color: red;
 }
 .jq-tab-content .controlwrapper > .label {
   font-weight: 500;
@@ -192,7 +220,7 @@
       -ms-flex-align: center;
           align-items: center;
 }
-.jq-tab-content input[type=text], .jq-tab-content input[type=number] {
+.jq-tab-content input[type=text], .jq-tab-content input[type=number], .jq-tab-content input[type=password] {
   background-color: #444;
   color: #f1f1f1;
   font-size: 1.2em;

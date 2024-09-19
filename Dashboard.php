@@ -32,6 +32,7 @@ class Dashboard {
 		'icon_url' => null,
 		'position' => null,
 		'save_button' => true,
+		'store_collapsed_status' => false,
 	];
 
 
@@ -93,21 +94,21 @@ class Dashboard {
 
 
 		// load the jquery-tabs css and js
-		wp_enqueue_style( 'jquery-tabs'	, SAVVYPANEL_URL . '/css/jquery.tabs.min.css'	, array(), self::SAVVYPANEL_VERSION );
-		wp_enqueue_script( 'jquery-tabs', SAVVYPANEL_URL . '/js/jquery.tabs.min.js'		, array(), self::SAVVYPANEL_VERSION );
+		wp_enqueue_style( 'jquery-tabs'	, SAVVYPANEL_URL . 'css/jquery.tabs.min.css'	, array(), self::SAVVYPANEL_VERSION );
+		wp_enqueue_script( 'jquery-tabs', SAVVYPANEL_URL . 'js/jquery.tabs.min.js'		, array(), self::SAVVYPANEL_VERSION );
 
 		// allow disabling default css so that custom css can be enqueued
 		if ( apply_filters( 'savvypanel/css/notifications' , true ) ) {
-			wp_enqueue_style( 'notifications'	, SAVVYPANEL_URL . '/css/notifications.css'	, array(), self::SAVVYPANEL_VERSION );
+			wp_enqueue_style( 'notifications'	, SAVVYPANEL_URL . 'css/notifications.css'	, array(), self::SAVVYPANEL_VERSION );
 		}
-		wp_enqueue_script( 'notifications', SAVVYPANEL_URL . '/js/notifications.js'		, array(), self::SAVVYPANEL_VERSION , true );
+		wp_enqueue_script( 'notifications', SAVVYPANEL_URL . 'js/notifications.js'		, array(), self::SAVVYPANEL_VERSION , true );
 
 		// savvypanel dashboard css and js
 		// allow disabling default css so that custom css can be enqueued
 		if ( apply_filters( 'savvypanel/css/dashboard' , true ) ) {
-			wp_enqueue_style( 'savvypanel-dashboard'	, SAVVYPANEL_URL . '/css/savvypanel-dashboard.css'	, array(), self::SAVVYPANEL_VERSION );
+			wp_enqueue_style( 'savvypanel-dashboard'	, SAVVYPANEL_URL . 'css/savvypanel-dashboard.css'	, array(), self::SAVVYPANEL_VERSION );
 		}
-		wp_enqueue_script( 'savvypanel-dashboard'	, SAVVYPANEL_URL . '/js/savvypanel-dashboard.js'	, array(), self::SAVVYPANEL_VERSION );
+		wp_enqueue_script( 'savvypanel-dashboard'	, SAVVYPANEL_URL . 'js/savvypanel-dashboard.js'	, array(), self::SAVVYPANEL_VERSION );
 
 		// localize the script for use in JS
 		wp_localize_script( 'savvypanel-dashboard', 'SAVVYPANEL_LOCAL', array(
@@ -178,7 +179,9 @@ class Dashboard {
 	public function render_options() {
 
 		?>
-		<div class="adminoptions-options">
+		<div class="adminoptions-options" 
+			data-dashboard-id="<?php echo $this->settings[ 'id' ];?>"
+			data-store-collapsed-status="<?php echo $this->settings[ 'store_collapsed_status' ] === true ? '1' : '0' ; ?>">
 			<div class="adminoptions-heading">
 			<?php $this->render_heading(); ?>
 			</div>

@@ -96,6 +96,19 @@ abstract class Control implements ControlInterface {
         if ( $value !== null ) return $value;
         return "";
     }
+
+    /**
+     * outputTrueFalse
+     *
+     * Return "1" if value is true, else return "0"
+     *
+     * @param  mixed $value
+     * @return string
+     */
+    public function outputTrueFalse( $value ) {
+        if ( $value === true || $value == "1" ) return "1";
+        return "0";
+    }
     
     /**
      * __
